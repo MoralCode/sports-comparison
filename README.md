@@ -39,7 +39,6 @@ how mentally demanding is it
 
 ## How to mess with this
 
-1. open the `.fodt` in libreoffice if you want
-2. run `make data` to generate a data.csv file
-3. run `poetry install` to install python dependencies (requires poetry)
-4. run `poetry run python3 sports.py` to see the data as a 3d graph
+1. open the `.csv` in libreoffice if you want
+2. run `poetry install` to install python dependencies (requires poetry)
+3. run `poetry run python3 sports.py` to see the data as a 3d graph
