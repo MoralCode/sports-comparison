@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate interactive plot
         run: |
-          poetry run python main.py --html
+          poetry run python sports.py --html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
