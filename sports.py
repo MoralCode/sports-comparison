@@ -6,29 +6,29 @@ import pandas as pd
 data = pd.read_csv('data.csv')
 
 # Extract columns
-names = data['sport']
-x = data['x']
-y = data['y']
-z = data['z']
+sports = data['sport']
+subjectivity = data['subjectivity']
+physical_exertion = data['physical_exertion']
+mental_exertion = data['mental_exertion']
 
 # Create a new figure for plotting
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # Scatter plot
-scatter = ax.scatter(x, y, z, c='r', marker='o')
+scatter = ax.scatter(subjectivity, physical_exertion, mental_exertion, c='r', marker='o')
 
 # Labels
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_zlabel('Z Label')
+ax.set_xlabel('Subjectivity')
+ax.set_ylabel('Physical Exertion')
+ax.set_zlabel('Mental Exertion')
 
 # Title
-ax.set_title('3D Scatter Plot')
+ax.set_title('3D Scatter Plot of Sports')
 
-# Annotate each point with its name
-for i, name in enumerate(names):
-    ax.text(x[i], y[i], z[i], name)
+# Annotate each point with its sport name
+for i, sport in enumerate(sports):
+    ax.text(subjectivity[i], physical_exertion[i], mental_exertion[i], sport)
 
 # Show plot
 plt.show()
