@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
+import mpld3
+import argparse
 
 # Read data from CSV file
 data = pd.read_csv('data.csv')
@@ -30,5 +32,19 @@ ax.set_title('3D Scatter Plot of Sports')
 for i, sport in enumerate(sports):
     ax.text(objectivity[i], physical_exertion[i], mental_exertion[i], sport)
 
-# Show plot
-plt.show()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Plot 3D scatter plot of sports data.')
+    parser.add_argument('--html', action='store_true', help='whether to build an html file for deployment')
+    args = parser.parse_args()
+
+    if args.html:
+        # Save interactive plot to HTML
+        html_str = mpld3.fig_to_html(fig)
+        with open("index.html", "w", encoding='utf-8') as f:
+            f.write(html_str)
+    else:
+        # Show plot
+        plt.show()
+
+
+
