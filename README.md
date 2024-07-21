@@ -2,7 +2,7 @@
 
 
 
-## subjectivity
+## objectivity
 how objective is the scoring
 0 - depends on how the judges feel 
 3 - mostly subjective (figure skating, gymnastics, dance)
