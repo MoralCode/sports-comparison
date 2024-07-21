@@ -40,7 +40,11 @@ This is the installation section.
     def test_extract_not_found(self):
         start_marker = "# Nonexistent"
         end_marker = "# Installation"
-        expected_output = ""
+        expected_output = """
+# Introduction
+This is the introduction section.
+
+"""
         result = extract_parts(self.readme_content, start_marker, end_marker)
         self.assertEqual(result, expected_output)
 

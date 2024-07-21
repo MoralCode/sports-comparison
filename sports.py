@@ -55,9 +55,13 @@ def render_plot_html(data, outfile="index.html"):
 # Function to extract specific parts of the README
 def extract_parts(content, start_marker, end_marker):
     start_index = content.find(start_marker)
-    end_index = content.find(end_marker, start_index)
+    end_index = content.find(end_marker, max(start_index, 0))
     if start_index != -1 and end_index != -1:
         return content[start_index:end_index]
+    elif start_index == -1 and end_index != -1:
+        return content[:end_index]
+    elif start_index != -1 and end_index == -1:
+        return content[start_index:]
     return ""
 
 # Function to remove specific parts of the README
