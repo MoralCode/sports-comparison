@@ -1,6 +1,6 @@
 # The universal classification of sports
 
-This is a crude attempt to come up with a cuberule for sports classsification.
+This is a crude attempt to come up with a simple method of sports classsification.
 
 The goal is to evaluate whether there is a set of three metrics that can adequately distribute the list of sporting endeavors across a 3d scatter plot. This enables discussions among people about their thoughts on different sports.
 
