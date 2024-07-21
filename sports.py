@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
-import mpld3
+import plotly.express as px
+import plotly.io as pio
+
 import argparse
 
 # Read data from CSV file
@@ -32,6 +34,22 @@ ax.set_title('3D Scatter Plot of Sports')
 for i, sport in enumerate(sports):
     ax.text(objectivity[i], physical_exertion[i], mental_exertion[i], sport)
 
+
+def plot_interactive(data):
+    # Extract columns
+    fig = px.scatter_3d(
+        data,
+        x='objectivity',
+        y='physical_exertion',
+        z='mental_exertion',
+        text='sport',
+        title='3D Scatter Plot of Sports',
+        labels={'objectivity': 'Objectivity', 'physical_exertion': 'Physical Exertion', 'mental_exertion': 'Mental Exertion'}
+    )
+
+    # Save interactive plot to HTML
+    pio.write_html(fig, file='index.html', auto_open=False)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Plot 3D scatter plot of sports data.')
     parser.add_argument('--html', action='store_true', help='whether to build an html file for deployment')
@@ -39,9 +57,7 @@ if __name__ == "__main__":
 
     if args.html:
         # Save interactive plot to HTML
-        html_str = mpld3.fig_to_html(fig)
-        with open("index.html", "w", encoding='utf-8') as f:
-            f.write(html_str)
+        plot_interactive(data)
     else:
         # Show plot
         plt.show()
