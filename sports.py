@@ -60,6 +60,14 @@ def extract_parts(content, start_marker, end_marker):
         return content[start_index:end_index]
     return ""
 
+# Function to remove specific parts of the README
+def remove_parts(content, start_marker, end_marker):
+    start_index = content.find(start_marker)
+    end_index = content.find(end_marker, start_index)
+    if start_index != -1 and end_index != -1:
+        return content[:start_index] + content[end_index+len(end_marker):]
+    return ""
+
 def build_html_page():
 
     # Define markers for the parts you want to extract
