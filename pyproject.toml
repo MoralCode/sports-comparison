@@ -9,7 +9,7 @@ readme = "README.md"
 python = "^3.10"
 matplotlib = "^3.9.1"
 pandas = "^2.2.2"
-mpld3 = "^0.5.10"
+plotly = "^5.22.0"
 
 
 [build-system]
