@@ -7,8 +7,8 @@ how objective is the scoring
 0 - depends on how the judges feel 
 3 - mostly subjective (figure skating, gymnastics, dance)
 6 - 
-9 - Semi objective (basketball)
-12 - totally objective (crew)
+9 - Semi objective, who won is clearly measurable but based on something arbitrary, such as points or baskets (basketball)
+12 - totally objective and based on something measurable (distance, time) (crew)
 
 
 ## physical_exertion
