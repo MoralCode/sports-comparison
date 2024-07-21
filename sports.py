@@ -5,6 +5,7 @@ import plotly.express as px
 import plotly.io as pio
 
 import markdown
+from pathlib import Path
 
 import argparse
 
@@ -72,23 +73,47 @@ def remove_parts(content, start_marker, end_marker):
         return content[:start_index] + content[end_index+len(end_marker):]
     return ""
 
-def create_markdown_tag(identifier):
+def create_markdown_tag(identifier="NONEXISTENT"):
     """converts a tag name into a literal string to search for in the markdown to separate certain blocks
     """
     return f"<!-- tag:{identifier} -->"
 
 
-def build_html_page():
+def build_html_page(readme_file="README.md"):
+    # build page around the plot data
+    # Read the README file
 
-    # Define markers for the parts you want to extract
-    start_marker = "# Introduction"
-    end_marker = "# Installation"
+    readme_content = Path(readme_file).read_text()
 
-    # Extract the desired part
-    extracted_content = extract_parts(readme_content, start_marker, end_marker)
+    # Extract the intro
+    extracted_intro = extract_parts(
+        readme_content,
+        create_markdown_tag(),
+        create_markdown_tag("END_INTRO")
+    )
+
+    # remove the image from that intro
+    extracted_intro = remove_parts(
+        extracted_intro,
+        create_markdown_tag("BEGIN_IMAGE"),
+        create_markdown_tag("END_IMAGE")
+    )
+
+    # Extract the scoring section
+    extracted_scoring = extract_parts(
+        readme_content,
+        create_markdown_tag("END_INTRO"),
+        create_markdown_tag("END_SCORING")
+    )
+
+    intro_html = markdown.markdown(extracted_intro)
+
+    plot_embed = '<iframe src="./3dplot.html"></iframe>'
+    scoring_html = markdown.markdown(extracted_scoring)
+
 
     # Convert extracted part to HTML
-    html_content = markdown.markdown(extracted_content)
+    html_content = intro_html + plot_embed + scoring_html
 
     # Save to an HTML file
     with open('output.html', 'w', encoding='utf-8') as file:
@@ -101,12 +126,9 @@ if __name__ == "__main__":
 
     if args.html:
         # Save interactive plot to HTML
-        render_plot_html(data)
-
-        # build page around the plot data
-        # Read the README file
-        with open('README.md', 'r', encoding='utf-8') as file:
-            readme_content = file.read()
+        render_plot_html(data, outfile="3dplot.html")
+        build_html_page()
+        
     else:
         # Show plot
         plt.show()
