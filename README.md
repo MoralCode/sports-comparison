@@ -6,6 +6,8 @@ We all know that chess, esports, and track *feel like* different "types" of spor
 
 This project creates a 3d plot to attempt to cluster the sports together by some intuitive metrics
 
+![a screenshot of a 3d scatterplot graph showing many different sports arranged by axes of physical exertion, mental exertion, and scoring objectivitiy](./graph.png)
+
 
 ## Scoring Definitions
 ### objectivity
