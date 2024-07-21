@@ -1,0 +1,10 @@
+<head>
+	<style>
+		iframe {
+			width: 50vw;
+			height: 50vh;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>

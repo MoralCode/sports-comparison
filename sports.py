@@ -79,7 +79,7 @@ def create_markdown_tag(identifier="NONEXISTENT"):
     return f"<!-- tag:{identifier} -->"
 
 
-def build_html_page(readme_file="README.md"):
+def build_html_page(readme_file="README.md", headfile=None, inject_closing_body=True):
     # build page around the plot data
     # Read the README file
 
@@ -113,7 +113,14 @@ def build_html_page(readme_file="README.md"):
 
 
     # Convert extracted part to HTML
-    html_content = intro_html + plot_embed + scoring_html
+    html_content = ""
+    if headfile:
+        html_content += Path(headfile).read_text()
+    html_content += intro_html
+    html_content += plot_embed
+    html_content += scoring_html
+    if headfile and inject_closing_body:
+        html_content += "</body>"
 
     # Save to an HTML file
     with open('output.html', 'w', encoding='utf-8') as file:
@@ -127,7 +134,7 @@ if __name__ == "__main__":
     if args.html:
         # Save interactive plot to HTML
         render_plot_html(data, outfile="3dplot.html")
-        build_html_page()
+        build_html_page(headfile="head.thtml")
         
     else:
         # Show plot
