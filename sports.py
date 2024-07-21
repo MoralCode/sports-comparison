@@ -4,6 +4,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.io as pio
 
+import markdown
+
 import argparse
 
 # Read data from CSV file
@@ -35,7 +37,7 @@ for i, sport in enumerate(sports):
     ax.text(objectivity[i], physical_exertion[i], mental_exertion[i], sport)
 
 
-def plot_interactive(data, outfile="index.html"):
+def render_plot_html(data, outfile="index.html"):
     # Extract columns
     fig = px.scatter_3d(
         data,
@@ -50,6 +52,30 @@ def plot_interactive(data, outfile="index.html"):
     # Save interactive plot to HTML
     pio.write_html(fig, file=outfile, auto_open=False)
 
+# Function to extract specific parts of the README
+def extract_parts(content, start_marker, end_marker):
+    start_index = content.find(start_marker)
+    end_index = content.find(end_marker, start_index)
+    if start_index != -1 and end_index != -1:
+        return content[start_index:end_index]
+    return ""
+
+def build_html_page():
+
+    # Define markers for the parts you want to extract
+    start_marker = "# Introduction"
+    end_marker = "# Installation"
+
+    # Extract the desired part
+    extracted_content = extract_parts(readme_content, start_marker, end_marker)
+
+    # Convert extracted part to HTML
+    html_content = markdown.markdown(extracted_content)
+
+    # Save to an HTML file
+    with open('output.html', 'w', encoding='utf-8') as file:
+        file.write(html_content)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Plot 3D scatter plot of sports data.')
     parser.add_argument('--html', action='store_true', help='whether to build an html file for deployment')
@@ -57,7 +83,12 @@ if __name__ == "__main__":
 
     if args.html:
         # Save interactive plot to HTML
-        plot_interactive(data)
+        render_plot_html(data)
+
+        # build page around the plot data
+        # Read the README file
+        with open('README.md', 'r', encoding='utf-8') as file:
+            readme_content = file.read()
     else:
         # Show plot
         plt.show()
