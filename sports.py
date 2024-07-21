@@ -6,7 +6,7 @@ import pandas as pd
 data = pd.read_csv('data.csv')
 
 # Extract columns
-names = data['name']
+names = data['sport']
 x = data['x']
 y = data['y']
 z = data['z']
