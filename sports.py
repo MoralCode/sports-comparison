@@ -79,7 +79,7 @@ def create_markdown_tag(identifier="NONEXISTENT"):
     return f"<!-- tag:{identifier} -->"
 
 
-def build_html_page(readme_file="README.md", headfile=None, inject_closing_body=True):
+def build_html_page(readme_file="README.md", headfile=None, inject_closing_body=True, outfile="output.html"):
     # build page around the plot data
     # Read the README file
 
@@ -123,8 +123,7 @@ def build_html_page(readme_file="README.md", headfile=None, inject_closing_body=
         html_content += "</body>"
 
     # Save to an HTML file
-    with open('output.html', 'w', encoding='utf-8') as file:
-        file.write(html_content)
+    Path(outfile).write_text(html_content)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Plot 3D scatter plot of sports data.')
@@ -134,7 +133,7 @@ if __name__ == "__main__":
     if args.html:
         # Save interactive plot to HTML
         render_plot_html(data, outfile="3dplot.html")
-        build_html_page(headfile="head.thtml")
+        build_html_page(headfile="head.thtml", outfile="index.html")
         
     else:
         # Show plot
