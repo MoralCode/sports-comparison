@@ -68,6 +68,12 @@ def remove_parts(content, start_marker, end_marker):
         return content[:start_index] + content[end_index+len(end_marker):]
     return ""
 
+def create_markdown_tag(identifier):
+    """converts a tag name into a literal string to search for in the markdown to separate certain blocks
+    """
+    return f"<!-- tag:{identifier} -->"
+
+
 def build_html_page():
 
     # Define markers for the parts you want to extract
