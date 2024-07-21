@@ -35,7 +35,7 @@ for i, sport in enumerate(sports):
     ax.text(objectivity[i], physical_exertion[i], mental_exertion[i], sport)
 
 
-def plot_interactive(data):
+def plot_interactive(data, outfile="index.html"):
     # Extract columns
     fig = px.scatter_3d(
         data,
@@ -48,7 +48,7 @@ def plot_interactive(data):
     )
 
     # Save interactive plot to HTML
-    pio.write_html(fig, file='index.html', auto_open=False)
+    pio.write_html(fig, file=outfile, auto_open=False)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Plot 3D scatter plot of sports data.')
