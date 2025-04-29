@@ -2,7 +2,7 @@
 
 This is a crude attempt to come up with a simple method of sports classsification.
 
-The goal is to evaluate whether there is a set of three metrics that can adequately distribute the list of sporting endeavors across a 3d scatter plot. This enables discussions among people about their thoughts on different sports.
+The goal is to evaluate whether the below set of three metrics that can adequately distribute the list of sporting endeavors across a 3d scatter plot. This enables discussions among people about their thoughts on different sports.
 
 <!-- tag:BEGIN_IMAGE -->
 ![a screenshot of a 3d scatterplot graph showing many different sports arranged by axes of physical exertion, mental exertion, and scoring objectivitiy](./graph.png)
