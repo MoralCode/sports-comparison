@@ -70,6 +70,10 @@ How mentally demanding is it. This includes skills such as:
 - **9** - Fairly significant strategy. Mistakes could eaily cost you the win and are quite hard to recover from, possibly also including accounting for the  or conditions (pool, archery, etc)
 - **12** - Strategy is everything and a wrong move at the start can easily cost you everything and be nearly impossible to recover from (chess, microsoft excel)
 
+
+## Contributing to the site
+The source code for this site is maintained [here](https://codeberg.org/MoralCode/sports-comparison). Issues and contributions are welcome.
+
 <!-- tag:END_SCORING -->
 ## How to mess with this
 
